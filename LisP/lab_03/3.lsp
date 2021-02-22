@@ -1,0 +1,1 @@
+(defun volumeOfParPed (x y z) (* x y z))
