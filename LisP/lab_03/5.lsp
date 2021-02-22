@@ -1,0 +1,1 @@
+(defun isListLonger (firstList secondList) (> (length firstList) (length secondList)))
