@@ -1,0 +1,1 @@
+(defun f-to-c (temperature) (* (/ 5 9) (- temperature 32.0)))
