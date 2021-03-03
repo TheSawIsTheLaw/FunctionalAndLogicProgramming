@@ -10,5 +10,5 @@
 
 ;or
 (defun isBetweenOr (fNum sNum tNum) (
-    not (or (not (> fNum sNum)) (not (< fNum tNum)))
+    and (> fNum sNum) (< fNum tNum)
 ))
