@@ -1,3 +1,3 @@
 (defun isBetween (fNum sNum tNum) (
-    and (> fNum sNum) (< fNum tNum)
+    or (and (< fNum sNum) (> fNum tNum)) (and (> fNum sNum) (< fNum tNum))
 ))
