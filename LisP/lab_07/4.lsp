@@ -4,3 +4,12 @@
         (setf (car (last lst)) (car (first lst))) 
         (setf (first lst) (cdr (first lst)))) 
         lst)
+
+(defun swap-first-last (lst)
+    (let 
+        ((temp (car lst))
+        (lastEl (last lst)))
+
+        (setf (car lst) (car lastEl))
+        (setf (car lastEl) temp)
+        lst))
