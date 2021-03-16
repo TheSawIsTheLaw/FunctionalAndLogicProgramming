@@ -1,0 +1,5 @@
+(defun reduce-numbers-by-10 (lst)
+    (mapcar #'(lambda (element) 
+              (cond ((numberp element) (- element 10))
+                    (t element)))
+            lst))
