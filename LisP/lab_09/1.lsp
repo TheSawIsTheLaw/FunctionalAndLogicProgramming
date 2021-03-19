@@ -11,6 +11,5 @@
 ; функция предподготовки
 (defun select-between (lst fNum sNum)
     (let ((down-limit (cond ((< fNum sNum) fNum) (t sNum)))
-          (up-limit (cond ((> fNum sNum) fNum) (t sNum))))
-          
+          (up-limit (cond ((< fNum sNum) sNum) (t fNum))))
           (select-rec lst down-limit up-limit)))

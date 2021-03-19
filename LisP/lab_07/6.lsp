@@ -4,7 +4,6 @@
     (setf (cdr (last out)) (cons (first lst) nil))
     out))
 
-; Господи, хотел бы я пользоваться reverse
 (defun swap-to-right (lst)
     (let ((out nil))
     (setf out (copy-list lst))
