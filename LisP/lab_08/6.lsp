@@ -1,11 +1,30 @@
-(defun sum-all-nums (cur)
-    (cond ((numberp cur) cur)
-          ((symbolp cur) 0) ; Здесь можно не проверять на nil, так как (symbolp nil) -> T
-          (t (+ (sum-all-nums (car cur)) (sum-all-nums (cdr cur))))))
+; для работы с одноуровневым смешанным списком с использованием функционала
+(defun sum-all-nums (lst)
+    (reduce (lambda (accum cur-element)
+                    (cond 
+                        ((numberp cur-element) (+ accum cur-element))
+                        (t accum)))
+            (cons 0 lst)))
 
-(defun sum-all-nums-dop (lst)
+; для работы со смешанным структурированным списком с использованием функционала
+(defun sum-all-nums-deep (lst)
     (reduce (lambda (accum cur-element)
                       (cond ((numberp cur-element) (+ accum cur-element))
-                            ((listp cur-element) (+ accum (sum-all-nums-tail cur-element)))
+                            ((listp cur-element) (+ accum (sum-all-nums-deep cur-element)))
                             (t accum)))
             (cons 0 lst)))
+
+; для работы с одноуровневым смешанным списком рекурсивно
+(defun sum-all-nums-rec (lst)
+    (cond 
+        ((null lst) 0)
+        ((numberp (car lst)) (+ (car lst) (sum-all-nums-rec (cdr lst))))
+        (t (+ 0 (sum-all-nums-rec (cdr lst))))))
+
+; для работы со структурированным смешанным списком рекурсивно
+(defun sum-all-nums-rec-deep (lst)
+    (cond 
+        ((null lst) 0)
+        ((numberp (car lst)) (+ (car lst) (sum-all-nums-rec-deep (cdr lst))))
+        ((listp (car lst)) (+ (sum-all-nums-rec-deep (car lst)) (sum-all-nums-rec-deep (cdr lst))))
+        (t (sum-all-nums-rec-deep (cdr lst)))))
