@@ -1,12 +1,19 @@
 ; В случае, если список состоит только из одноуровневых списков, можно не использовать рекурсию,
-; указанная функция работает для всех уровней
+; но указанная функция работает для всех уровней
 (defun sum-len (lst)
     (reduce (lambda (accum cur-el) (cond ((listp cur-el) (+ accum (sum-len cur-el)))
                                          (t (+ accum 1)))) (cons 0 lst)))
 
-; личная функция len, породирующая поведение length
+; Только рекурсивное решение
+(defun sum-len-rec (lst)
+    (cond
+        ((null lst) 0)
+        ((listp (car lst)) (+ (sum-len-rec (car lst)) (sum-len-rec (cdr lst))))
+        (t (+ 1 (sum-len-rec (cdr lst))))))
+
+; личная функция len, пародирующая поведение length
 (defun len (cdr-lst)
-    (cond ((null cdr-lst) 0)
+    (cond ((null (cdr cdr-lst)) 1)
           (t (+ 1 (len (cdr cdr-lst))))))
 
 ; С наложенными ограничениями (с использованием функционала):
@@ -20,9 +27,4 @@
 (defun sum-len (lst)
     (cond ((null lst) 0)
           ((numberp lst) 1)
-          (t (+ (sum-len (car lst)) (sum-len (cdr lst))))))
-
-; Ещё один подобный вариант с использованием собственной функции length
-(defun sum-len (lst)
-    (cond ((null lst) 0)
           (t (+ (len (car lst)) (sum-len (cdr lst))))))
