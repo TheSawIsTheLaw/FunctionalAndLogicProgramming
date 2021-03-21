@@ -30,7 +30,10 @@
 
 (change-salary-with-cond table 'pos #'(lambda (got-pos) (equal 'Manager got-pos)) #'(lambda (sal) (setf sal (/ sal 2))))
 
-(defun get-sum-salary (table)
+(defun get-sum-salary-inner (table acc)
     (cond
-        ((null table) 0)
-        (t (+ (get-val-by-key 'salary (car table)) (get-sum-salary (cdr table))))))
+        ((null table) acc)
+        (t (get-sum-salary-inner (cdr table) (+ acc (get-val-by-key 'salary (car table)))))))
+
+(defun get-sum-salary (table)
+    (get-sum-salary-inner table 0))

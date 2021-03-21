@@ -7,7 +7,7 @@
 (defun rec-add (lst)
     (rec-add-inner lst 0))
 
-; либо
+; С использованием дополняемой рекурсии
 (defun rec-add (lst)
     (cond
         ((null (cdr lst)) (car lst))
@@ -24,7 +24,7 @@
 (defun rec-add (lst)
     (rec-add-inner lst 0))
 
-; либо
+; С использованием дополняемой рекурсии
 (defun rec-add (lst)
     (cond
         ((null lst) 0)
