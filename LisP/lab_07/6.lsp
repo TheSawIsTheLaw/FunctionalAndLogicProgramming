@@ -4,6 +4,11 @@
     ; (setf (cdr (last out)) (cons (first lst) nil))
     ; out))
 
+(defun my-last (lst)
+    (cond
+        ((null (cdr lst)) lst)
+        (t (my-last (cdr lst)))))
+
 (defun swap-to-left-inner (lst f-el)
     (cond
         ((null lst) (cons f-el nil))

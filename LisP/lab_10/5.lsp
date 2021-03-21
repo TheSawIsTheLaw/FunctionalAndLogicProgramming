@@ -16,7 +16,7 @@
 (defun sum-to-lz (lst)
     (sum-to-lz-inner lst 0))
 
-; от n до первого меньше нуля
+; от n до первого < 0
 (defun sum-from-n-to-lz-inner (lst from-n acc)
     (cond
         ((null lst) acc)

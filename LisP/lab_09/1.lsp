@@ -1,3 +1,10 @@
+; На деле эта функция работает не так, как лисповая. Дело в том, что она не разрушает структуру,
+; так как запрещено пользоваться setf, который используется в реализации
+; (defun my-nconc (f-lst s-lst)
+    ; (cond 
+        ; ((not (null f-lst)) (cons (car f-lst) (my-nconc (cdr f-lst) s-lst)))
+        ; ((not (null s-lst)) (cons (car s-lst) (my-nconc nil (cdr s-lst))))
+        ; (t nil)))
 ; Рекурсивно. Для смешанного списка.
 (defun select-rec-one-lvl (lst down-limit up-limit)
     (cond 
@@ -9,21 +16,14 @@
             (cons (car lst) (select-rec-one-lvl (cdr lst) down-limit up-limit)))
         (t (select-rec-one-lvl (cdr lst) down-limit up-limit))))
 
-; На деле эта функция работает не так, как лисповая. Дело в том, что она не разрушает структуру,
-; так как запрещено пользоваться setf, который используется в реализации
-; (defun my-nconc (f-lst s-lst)
-    ; (cond 
-        ; ((not (null f-lst)) (cons (car f-lst) (my-nconc (cdr f-lst) s-lst)))
-        ; ((not (null s-lst)) (cons (car s-lst) (my-nconc nil (cdr s-lst))))
-        ; (t nil)))
-
-; Рекурсивно. Для смешанного неструктурированного списка.
+; Рекурсивно. Для смешанного структурированного списка.
 (defun select-rec (lst down-limit up-limit)
     (cond
         ((null lst) nil)
-        ((listp (car lst)) (cons (select-rec (car lst) down-limit up-limit) (select-rec (cdr lst) down-limit up-limit)))
-        ((and 
-            (numberp (car lst)) 
+        ((listp (car lst)) (cons (select-rec (car lst) down-limit up-limit)
+                                 (select-rec (cdr lst) down-limit up-limit)))
+        ((and
+            (numberp (car lst))
             (<= (car lst) up-limit) 
             (>= (car lst) down-limit)) 
                 (cons (car lst) (select-rec (cdr lst) down-limit up-limit)))
@@ -34,7 +34,7 @@
 (defun select-fun-one-lvl (lst down-limit up-limit)
     (remove-if-not #'(lambda (el) (and (numberp el) (<= el up-limit) (>= el down-limit))) lst))
 
-; С использованием функционала. Для смешанного неструктурированного списка.
+; С использованием функционала. Для смешанного структурированного списка.
 (defun select-fun (lst down-limit up-limit)
     (mapcan #'(lambda (el) (cond
                                 ((listp el) (select-fun el down-limit up-limit))

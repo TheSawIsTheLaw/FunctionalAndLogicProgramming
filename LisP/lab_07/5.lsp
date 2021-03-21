@@ -11,29 +11,37 @@
 (defun len (lst)
     (len-inner lst 0))
 
+; Функция прохода до конца списка
 (defun swap-two-elements-nil (lst)
     (cond 
         ((null lst) nil)
-        (t (cons (car lst) (swap-two-elements-nil (cdr lst))))))
+        (t (cons (car lst) 
+                        (swap-two-elements-nil (cdr lst))))))
 
+; Функция прохода до второго индекса
 (defun swap-two-elements-last (lst indS f-el)
     (cond
-        ((= 0 indS) (cons f-el (swap-two-elements-nil (cdr lst))))
-        (t (cons (car lst) (swap-two-elements-last (cdr lst) (- indS 1) f-el)))))
+        ((= 0 indS) (cons f-el 
+                            (swap-two-elements-nil (cdr lst))))
+        (t (cons (car lst) 
+                        (swap-two-elements-last (cdr lst) (- indS 1) f-el)))))
 
-(defun swap-two-elements-inner (lst indF indS f-el s-el)
+; Функция прохода до первого индекса
+(defun swap-two-elements-inner (lst indF indS s-el)
     (cond 
-        ((= 0 indF) (cons s-el (swap-two-elements-last (cdr lst) (- indS 1) f-el)))
-        (t (cons (car lst) (swap-two-elements-inner (cdr lst) (- indF 1) (- indS 1) f-el s-el)))))
+        ((= 0 indF) (cons s-el 
+                            (swap-two-elements-last (cdr lst) indS (car lst))))
+        (t (cons (car lst) 
+                        (swap-two-elements-inner (cdr lst) (- indF 1) indS s-el)))))
 
-; Проверки внеси!!
+; Обёрточная функция
 (defun swap-two-elements (lst indF indS)
     (and 
         (and (>= indF 0) (>= indS 0) (< indF (len lst)) (< indS (len lst)))
         (cond 
             ((< indF indS) 
-                (swap-two-elements-inner lst indF indS (my-nth lst indF) (my-nth lst indS)))
-            (t (swap-two-elements-inner lst indS indF (my-nth lst indS) (my-nth lst indF))))))
+                (swap-two-elements-inner lst indF (- indS indF 1) (my-nth lst indS)))
+            (t (swap-two-elements-inner lst indS (- indF indS 1) (my-nth lst indF))))))
 
 ; (defun swap-two-elements (lst indF indS)
     ; (and

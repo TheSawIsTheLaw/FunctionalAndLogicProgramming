@@ -10,6 +10,8 @@
         ; ((null (cdr lst)) (cons (car lst) (cons out-list (cons first-el nil))))
         ; (t (swap-first-last-inner (cdr lst) (cons out-list (car lst)) first-el))))
 
+; можно было бы переписать на хвостовую рекурсию, но нельзя использовать nconc и setf,
+; который эффективно (без копирования) может работать только с использованием setf.
 (defun my-last (lst)
     (cond
         ((null (cdr lst)) lst)
@@ -22,6 +24,15 @@
 
 (defun swap-first-last (lst)
     (cons (car (my-last lst)) (swap-first-last-inner (cdr lst) (car lst))))
+
+; Хвостовая рекурсия
+(defun swap-first-last-nconc-inner (lst f-el out-list)
+    (cond
+        ((null (cdr lst)) (nconc (cons (car lst) nil) out-list f-el))
+        (t (swap-first-last-nconc-inner (cdr lst) f-el (nconc out-list (cons (car lst) nil))))))
+
+(defun swap-first-last-nconc (lst)
+    (swap-first-last-nconc-inner (cdr lst) (cons (car lst) nil) nil))
 
 ; (defun swap-first-last (lst)
     ; (let 

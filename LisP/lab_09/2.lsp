@@ -1,4 +1,5 @@
 ; Рекурсивно
+; Функция, составляющая все пары с переданным элементом и элементами переданного списка
 (defun dec-Prod-iter (f-el s-lst)
     (cond ((null s-lst) nil)
           (t (cons (cons f-el (car s-lst)) (dec-Prod-iter f-el (cdr s-lst))))))

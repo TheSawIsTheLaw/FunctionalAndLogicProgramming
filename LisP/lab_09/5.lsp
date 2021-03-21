@@ -1,4 +1,4 @@
-; Рекурсивно для смешанного неструктурированного списка
+; Рекурсивно для смешанного структурированного списка
 (defun get-sqr-list (lst)
     (cond 
         ((null lst) nil)
@@ -6,7 +6,7 @@
         ((numberp (car lst)) (cons (* (car lst) (car lst)) (get-sqr-list (cdr lst))))
         (t (get-sqr-list (cdr lst)))))
 
-; С использованием функционала для смешанного неструктурированного списка
+; С использованием функционала для смешанного структурированного списка
 (defun get-sqr-helper (el)
     (cond
         ((listp el) (cons (get-sqr-list-fun el) nil))

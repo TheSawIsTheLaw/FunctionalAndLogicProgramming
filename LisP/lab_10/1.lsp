@@ -13,7 +13,7 @@
         ((null (cdr lst)) (car lst))
         (t (+ (car lst) (rec-add (cdr lst))))))
 
-; с обработкой смешных структурированных списков
+; с обработкой смешанных структурированных списков
 (defun rec-add-inner (lst acc)
     (cond
         ((null lst) acc)
