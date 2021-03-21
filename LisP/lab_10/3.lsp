@@ -3,15 +3,23 @@
 ; возвращался nil - достаточно добавить обёрточную функцию с первым условием cond
 
 ; без работы с структурированными смешанными списками
-(defun allodr (lst)
-    (cond 
-        ((null lst) t)
-        (t (and (oddp (car lst)) (allodr-inner (cdr lst))))))
+(defun allodr-tail-inner (lst cur-bool)
+    (cond
+        ((null cur-bool) nil)
+        ((null lst))
+        (t (allodr-tail-inner (cdr lst) (oddp (car lst))))))
+
+(defun allodr-tail (lst)
+    (allodr-tail-inner lst t))
 
 ; для работы с структурированными смешанными списками
-(defun allodr (lst)
+(defun allodr-tail-inner (lst cur-bool)
     (cond
-        ((null lst) t)
-        ((listp (car lst)) (allodr (car lst)))
-        ((symbolp (car lst)) (allodr (cdr lst)))
-        (t (and (oddp (car lst)) (allodr (cdr lst))))))
+        ((null cur-bool) nil)
+        ((null lst))
+        ((listp (car lst)) (and (allodr-tail-inner (car lst) t) (allodr-tail-inner (cdr lst) cur-bool)))
+        ((numberp (car lst)) (allodr-tail-inner (cdr lst) (oddp (car lst))))
+        (t (allodr-tail-inner (cdr lst) cur-bool))))
+
+(defun allodr-tail (lst)
+    (allodr-tail-inner lst t))
