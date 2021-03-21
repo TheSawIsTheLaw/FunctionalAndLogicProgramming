@@ -1,4 +1,4 @@
-; Рекурсивно. Для смешанного одноуровнего списка.
+; Рекурсивно. Для смешанного списка.
 (defun select-rec-one-lvl (lst down-limit up-limit)
     (cond 
         ((null lst) nil)
@@ -30,13 +30,11 @@
         (t (select-rec (cdr lst) down-limit up-limit))))
 ; (select-rec '(1 2 (3 4 #'+ 3) ad 3 2 zxcv) 1 3)
 
-; С использованием функционала. Для смешанного одноуровнего списка.
+; С использованием функционала. Для смешанного списка.
 (defun select-fun-one-lvl (lst down-limit up-limit)
     (remove-if-not #'(lambda (el) (and (numberp el) (<= el up-limit) (>= el down-limit))) lst))
 
-; С использованием функционала. Для смешанного неструктурированного списка. Здесь структуру не сохраняем,
-; так как mapcar, в отличие от mapcan, не даёт возможность вернуть список с количеством аргументов меньшим,
-; чем у того, который был на входе
+; С использованием функционала. Для смешанного неструктурированного списка.
 (defun select-fun (lst down-limit up-limit)
     (mapcan #'(lambda (el) (cond
                                 ((listp el) (select-fun el down-limit up-limit))
