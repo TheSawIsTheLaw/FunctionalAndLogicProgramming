@@ -3,9 +3,13 @@
         ((= 0 index) (car lst))
         (t (my-nth (cdr lst) (- index 1)))))
 
-(defun len (cdr-lst)
-    (cond ((null cdr-lst) 0)
-          (t (+ 1 (len (cdr cdr-lst))))))
+(defun len-inner (lst acc)
+    (cond
+        ((null lst) acc)
+        (t (len-inner (cdr lst) (+ acc 1)))))
+
+(defun len (lst)
+    (len-inner lst 0))
 
 (defun swap-two-elements-nil (lst)
     (cond 
