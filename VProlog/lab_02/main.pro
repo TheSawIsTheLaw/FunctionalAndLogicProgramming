@@ -24,6 +24,7 @@ clauses
     studyIn(4, "MIT").
     studyIn(2, "MIT").
     studyIn(6, "ITMO").
+    % studyIn(6, University) :- studyIn(2, University), studyIn(4, University).
 
     fromUniversity(University, Identificator, FirstName, LastName) :- studyIn(Identificator, University),
     										 identificatorOfStudent(Identificator, FirstName, LastName).
