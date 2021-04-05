@@ -3,17 +3,17 @@ domains
     firstName, lastName, university = string.
 
 predicates
-    identificatorOfStudent(identificator, firstName, lastName).
+    refersToName(identificator, firstName, lastName).
     studyIn(identificator, university).
     fromUniversity(university, identificator, firstName, lastName).
 
 clauses
-    identificatorOfStudent(1, "Sergey", "Kononenko").
-    identificatorOfStudent(2, "Pavel", "Perestoronin").
-    identificatorOfStudent(3, "Alexey", "Rabinovich").
-    identificatorOfStudent(4, "Magerram", "Zeynalov").
-    identificatorOfStudent(5, "Dmitry", "Yakuba").
-    identificatorOfStudent(6, "Pavel", "Nahimov").
+    refersToName(1, "Sergey", "Kononenko").
+    refersToName(2, "Pavel", "Perestoronin").
+    refersToName(3, "Alexey", "Rabinovich").
+    refersToName(4, "Magerram", "Zeynalov").
+    refersToName(5, "Dmitry", "Yakuba").
+    refersToName(6, "Pavel", "Nahimov").
 
     studyIn(1, "BMSTU").
     studyIn(2, "BMSTU").
@@ -27,18 +27,18 @@ clauses
     % studyIn(6, University) :- studyIn(2, University), studyIn(4, University).
 
     fromUniversity(University, Identificator, FirstName, LastName) :- studyIn(Identificator, University),
-    										 identificatorOfStudent(Identificator, FirstName, LastName).
+    										 refersToName(Identificator, FirstName, LastName).
 
 goal
     % Get students' names
-    identificatorOfStudent(1, FirstName, LastName); % FirstName=Sergey, LastName=Kononenko
-    identificatorOfStudent(3, FirstName, LastName); % FirstName=Alexey, LastName=Rabinovich
-    identificatorOfStudent(777, FirstName, LastName); % ---
+    refersToName(1, FirstName, LastName); % FirstName=Sergey, LastName=Kononenko
+    refersToName(3, FirstName, LastName); % FirstName=Alexey, LastName=Rabinovich
+    refersToName(777, FirstName, LastName); % ---
     
     % Get students' identificators
-    identificatorOfStudent(Id, "Pavel", LastName); % Id=2, LastName=Perestoronin; Id=6, LastName=Nahimov
-    identificatorOfStudent(Id, "Magerram", "Zeynalov"); % Id = 4
-    identificatorOfStudent(Id, "Unknown", "Unknown"); % ---
+    refersToName(Id, "Pavel", LastName); % Id=2, LastName=Perestoronin; Id=6, LastName=Nahimov
+    refersToName(Id, "Magerram", "Zeynalov"); % Id = 4
+    refersToName(Id, "Unknown", "Unknown"); % ---
     
     % Get students from universities
     studyIn(Id, "BMSTU"); % Id=1 Id=2 Id=3 Id=5
