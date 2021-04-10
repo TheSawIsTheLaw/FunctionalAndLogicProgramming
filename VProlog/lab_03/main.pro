@@ -44,11 +44,11 @@ clauses
     hasDeposit("Kovalev", "Moscow", "Sberbank", 123456, 123456789).
     hasDeposit("Kovalev", "Nijnii Novgorod", "Not Sberbank", 654321, 987654321).
 
-    hasCarByPhoneBook(Telephone, LName, CarBrand, CarPrice) :- hasCar(LName, CarBrand, _, CarPrice), 
-                                                            hasPhone(LName, Telephone, _).
+    hasCarByPhoneBook(Telephone_, LName_, CarBrand_, CarPrice_) :- hasCar(LName_, CarBrand_, _, CarPrice_), 
+                                                            hasPhone(LName_, Telephone_, _).
 
-    hasDepositByLastNameCity(LastName, City, Street, Bank, Telephone) :- hasDeposit(LastName, City, Bank, _, _),
-                                                                         hasPhone(LastName, Telephone, address(City, Street, _, _)).
+    hasDepositByLastNameCity(LastName_, City_, Street_, Bank_, Telephone_) :- hasDeposit(LastName_, City_, Bank_, _, _),
+                                                                         hasPhone(LastName_, Telephone_, address(City_, Street_, _, _)).
 
 goal
     % get car by phone book
@@ -78,7 +78,7 @@ goal
     % get address, banks and telephone
     hasDepositByLastNameCity("Kovalev", "Moscow", Street, Bank, Telephone);
     	% Street=Lusinovskaya, Bank=Sberbank, Telephone=+79993332211
-	    % Street=Paveletsky Proezd, Bank=Sberbank, Telephone=+37773892047
+	% Street=Paveletsky Proezd, Bank=Sberbank, Telephone=+37773892047
 	
     hasDepositByLastNameCity("Kovalev", "Nijnii Novgorod", Street, Bank, Telephone);
         % Street=Not Lusinovskaya, Bank=Not Sberbank, Telephone=+11111111111
