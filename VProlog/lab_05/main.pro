@@ -87,4 +87,6 @@ clauses
                         Price_ = FPrice + SPrice + TPrice + FoPrice.
 
 goal
-    hasOwnershipNamePrice("KovalevA", Object, Price).
+    %ownObjects("Perestoronin", Object).
+    %hasOwnershipNamePrice("KovalevA", Object, Price).
+    ownObjectsPrice("Perestoronin", Price).
