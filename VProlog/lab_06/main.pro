@@ -52,11 +52,11 @@ goal
     % FathersMotherName=Valentina Romanova, 
     % FathersFatherName=Elisey Romanov
     
-    % ancestors("Alexey Romanov", MothersMotherName, _, _, _)
+    ancestors("Alexey Romanov", MothersMotherName, _, _, _)
     % Point 4
     % MothersMotherName=Klavdiya Portak
     
-    ancestors("Alexandra Romanova", MothersMotherName, MothersFatherName, _, _)
+    % ancestors("Alexandra Romanova", MothersMotherName, MothersFatherName, _, _)
     % Point 5
     % MothersMotherName=Irina Grishkovec,
     % MothersFatherName=Sergey Grishkovec
