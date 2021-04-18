@@ -20,29 +20,29 @@ clauses
     maxOfThreeCut(_, _, TVar, TVar).
 
 goal
-    maxOfTwo(1.2, 1.333, Max);
-    maxOfTwo(1.999, -2, Max);
-    maxOfTwo(1.999, 1.999, Max);
+    maxOfTwo(1.2, 1.333, Max); % 1.333
+    maxOfTwo(1.999, -2, Max); % 1.999
+    maxOfTwo(1.999, 1.999, Max); % 1.999, 1.999
 
-    maxOfTwoCut(1.2, 1.333, Max);
-    maxOfTwoCut(1.999, -2, Max);
-    maxOfTwoCut(1.999, 1.999, Max);
+    maxOfTwoCut(1.2, 1.333, Max); % 1.333
+    maxOfTwoCut(1.999, -2, Max); % 1.999
+    maxOfTwoCut(1.999, 1.999, Max); % 1.999
 
-    maxOfThree(1.1, 1.2, 1.3, Max);
-    maxOfThree(1.3, 1.2, 1.1, Max);
-    maxOfThree(1.3, 1.1, 1.2, Max);
-    maxOfThree(1.2, 1.1, 1.3, Max);
-    maxOfThree(1.2, 1.2, 1.3, Max);
-    maxOfThree(1.2, 1.3, 1.2, Max);
-    maxOfThree(1.3, 1.2, 1.2, Max);
-    maxOfThree(111, 111, 111, Max);
+    maxOfThree(1.1, 1.2, 1.3, Max); % 1.3
+    maxOfThree(1.3, 1.2, 1.1, Max); % 1.3
+    maxOfThree(1.3, 1.1, 1.2, Max); % 1.3
+    maxOfThree(1.2, 1.1, 1.3, Max); % 1.3
+    maxOfThree(1.2, 1.2, 1.3, Max); % 1.3
+    maxOfThree(1.2, 1.3, 1.2, Max); % 1.3
+    maxOfThree(1.3, 1.2, 1.2, Max); % 1.3
+    maxOfThree(111, 111, 111, Max); % 111 111 111
 
-    maxOfThreeCut(1.1, 1.2, 1.3, Max);
-    maxOfThreeCut(1.3, 1.2, 1.1, Max);
-    maxOfThreeCut(1.3, 1.1, 1.2, Max);
-    maxOfThreeCut(1.2, 1.1, 1.3, Max);
-    maxOfThreeCut(1.2, 1.2, 1.3, Max);
-    maxOfThreeCut(1.2, 1.3, 1.2, Max);
-    maxOfThreeCut(1.3, 1.2, 1.2, Max);
-    maxOfThreeCut(111, 111, 111, Max)
+    maxOfThreeCut(1.1, 1.2, 1.3, Max); % 1.3
+    maxOfThreeCut(1.3, 1.2, 1.1, Max); % 1.3
+    maxOfThreeCut(1.3, 1.1, 1.2, Max); % 1.3
+    maxOfThreeCut(1.2, 1.1, 1.3, Max); % 1.3
+    maxOfThreeCut(1.2, 1.2, 1.3, Max); % 1.3
+    maxOfThreeCut(1.2, 1.3, 1.2, Max); % 1.3
+    maxOfThreeCut(1.3, 1.2, 1.2, Max); % 1.3
+    maxOfThreeCut(111, 111, 111, Max) % 111
     .
