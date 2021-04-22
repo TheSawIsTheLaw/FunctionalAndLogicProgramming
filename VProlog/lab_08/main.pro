@@ -12,7 +12,7 @@ clauses
                         TempNumber = Number - 1,
                         factorialInner(TempNumber, Answer, TempAnswer).
 
-    factorial(Number, Answer) :- factorialInner(Number, Answer, 1), !.
+    factorial(Number, Answer) :- factorialInner(Number, Answer, 1).
 
     fibboInner(Number, Answer, PrevAnswer, _) :- Number < 2, Answer = PrevAnswer, !.
     fibboInner(Number, Answer, PrevPrevAnswer, PrevAnswer) :-
