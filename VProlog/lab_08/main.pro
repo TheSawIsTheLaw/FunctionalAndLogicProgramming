@@ -24,20 +24,20 @@ clauses
     fibbo(Number, Answer) :- fibboInner(Number, Answer, 1, 1).
 
 goal
-    factorial(1, Answer_);
-    factorial(2, Answer_);
-    factorial(3, Answer_);
-    factorial(4, Answer_);
-    factorial(5, Answer_);
-    factorial(6, Answer_);
-    factorial(7, Answer_);
-    factorial(8, Answer_);
-    fibbo(1, Answer);
-    fibbo(2, Answer);
-    fibbo(3, Answer);
-    fibbo(4, Answer);
-    fibbo(5, Answer);
-    fibbo(6, Answer);
-    fibbo(7, Answer);
-    fibbo(8, Answer)
+    factorial(1, Answer_); % 1
+    factorial(2, Answer_); % 2
+    factorial(3, Answer_); % 6
+    factorial(4, Answer_); % 24
+    factorial(5, Answer_); % 120
+    factorial(6, Answer_); % 720
+    factorial(7, Answer_); % 5040
+    factorial(8, Answer_); % 40320
+    fibbo(1, Answer_); % 1
+    fibbo(2, Answer_); % 1
+    fibbo(3, Answer_); % 2
+    fibbo(4, Answer_); % 3
+    fibbo(5, Answer_); % 5
+    fibbo(6, Answer_); % 8
+    fibbo(7, Answer_); % 13
+    fibbo(8, Answer_)  % 21
     .

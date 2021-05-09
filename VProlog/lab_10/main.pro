@@ -16,23 +16,31 @@ predicates
     makeSet(list, list).
 
 clauses
-    append([H|T], SList, [H|AddTail]) :- % AddTail will be set to resursion for its 'value'
+    % SList - второй добавляемый список
+    % AddTail - хвост списка, уходящий для собственного определения в глубину,
+    % пока первый список не станет пустым (что станет и с AddTail)
+    append([H|T], SList, [H|AddTail]) :-
                             append(T, SList, AddTail), % look for new value of AddTail
                             !.
     append([], SList, SList). % Just append last elements to a list
 
-    listWithUpper([H|T], Num, [H|T2]) :-
+    % Num - число, больше которого должны быть элементы списка
+    % AddTail - хвост, уходящий для собственного определения в глубину
+    listWithUpper([H|T], Num, [H|AddTail]) :-
                                 H > Num,
-                                listWithUpper(T, Num, T2),
-                                !.
-    listWithUpper([_|T], Num, OutList) :- listWithUpper(T, Num, OutList).
-    listWithUpper([], _, []) :- !.
+                                !,
+                                listWithUpper(T, Num, AddTail).
+    listWithUpper([_|T], Num, OutList) :- listWithUpper(T, Num, OutList), !.
+    listWithUpper([], _, []).
 
+    % OutList - см. AddTail предыдущих реализаций
     oddPosList([H|[_|T]], [H|OutList]) :-
                                 oddPosList(T, OutList),
                                 !.
     oddPosList(List, List).
 
+    % El - элемент, подлежащий удалению
+    % AddTail - см. предыдущие реализации
     deleteOneElement([H|T], El, [H|AddTail]) :-
                                 El <> H,
                                 !,
@@ -40,6 +48,8 @@ clauses
     deleteOneElement([H|T], H, T) :- !.
     deleteOneElement(List, _, List).
 
+    % El - см. предыдущую реализацию
+    % AddTail - см. предыдущую реализацию
     deleteAllElement([H|T], El, AddTail) :-
                                 El = H,
                                 !,
@@ -49,11 +59,13 @@ clauses
                                 !.
     deleteAllElement(List, _, List).
 
+    % El - элемент, включение которого требуется определить
     includes([_|T], El) :- 
                                 includes(T, El),
                                 !.
     includes([H|_], H).
 
+    % AddTail - см. предыдущие реализации
     makeSet([H|T], AddTail) :-
                                 includes(T, H),
                                 !,
@@ -67,4 +79,4 @@ goal
     % deleteAllElement([1, 2, 1, 3, 1, 4], 1, OutList_).
     % oddPosList([1, 2, 3, 4, 5, 6], OutList_).
     % append([1, 2, 3], [4, 5, 6], OutList_).
-    % listWithUpper([1, 2, 3, 4, 5, 6, 7, 8], 4, OutList_).
+    % listWithUpper([1, 4, 5], 4, OutList_).

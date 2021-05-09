@@ -40,7 +40,8 @@ goal
     % listLen([], Answer_);
     % listLen([1, 2, 3], Answer_);
     
-    % listSum([1, 2, 3, 4, 5], Answer_);
+    % listSum([], Answer_);
+    listSum([1, 2, 4], Answer_);
     % listSum([1, 2, 3, 4, 5, -5], Answer_)
     
     listOddSum([], Answer_);
